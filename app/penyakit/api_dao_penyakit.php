@@ -104,10 +104,10 @@
         $nama = $data['nama'];
         $result = $this->db->query("UPDATE penyakit
             SET 
-                nama =  '$nama', 
+                nama =  '$nama'
             WHERE id = $id");
         if (!$result) {
-            die('execute failed: ' . htmlspecialchars($stmt->error));
+            die('execute failed: ' . htmlspecialchars($this->db->error));
         }
         return $result;
       }

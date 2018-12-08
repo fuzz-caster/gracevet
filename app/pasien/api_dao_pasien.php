@@ -39,8 +39,8 @@
               die('property "id_ras" can not be empty');
           }
           $stmt = $this->db->prepare("INSERT INTO pasien
-              (tipe_norek, norek, nama, jk, signalemen, lahir, id_ras) 
-              VALUES (?, ?, ?, ?, ?, ?, ?)");
+              (tipe_norek, norek, nama, jk, signalemen, lahir, id_ras, tatto_chip) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
           if (!$stmt) {
               http_response_code(500);
               echo 'Error Creating statement';
@@ -53,7 +53,8 @@
           $signalemen = $data['signalemen'];
           $lahir = $data['lahir'];
           $id_ras = $data['id_ras'];
-          if (!$stmt->bind_param('sssissi', $tipe_norek, $norek, $nama, $jk, $signalemen, $lahir, $id_ras)) {
+          $tc = $data['tatto_chip'];
+          if (!$stmt->bind_param('sssissis', $tipe_norek, $norek, $nama, $jk, $signalemen, $lahir, $id_ras, $tc)) {
               die('Error: Can not bind param');
           }
 
@@ -79,9 +80,11 @@
                   pasien.lahir AS lahir,
                   pasien.kunj_terakhir AS kunj_terakhir,
                   pasien.total_kunjungan AS total_kunjungan,
+                  pasien.temp_pemilik_id,
                   IF(pasien.jk = 1, 'Jantan', 'Betina') AS format_jk,
                   pasien.tipe_norek,
                   pasien.norek,
+                  pasien.tatto_chip as tatto_chip,
 
                   ras.nama AS ras_nama,
                   ras.id AS ras_id,
@@ -139,6 +142,8 @@
               pasien.total_kunjungan AS total_kunjungan,
               IF(pasien.jk = 1, 'Jantan', 'Betina') AS format_jk,
               pasien.tipe_norek,
+              pasien.tatto_chip as tatto_chip,
+              pasien.temp_pemilik_id,
               pasien.norek,
               ras.nama AS ras_nama,
               ras.id AS ras_id,
@@ -177,23 +182,21 @@
               http_response_code(500);
               die('property "lahir" can not be empty');
           }
-          if (empty($data['jk'])) {
-              http_response_code(500);
-              die('property "jk" can not be empty');
-          }
           $id = $data['id'];
           $nama = $data['nama'];
           $signalemen = $data['signalemen'];
           $jk = $data['jk'];
           $lahir = $data['lahir'];
           $id_ras = $data['id_ras'];
+          $tc = $data['tatto_chip'];
           $result = $this->db->query("UPDATE pasien
               SET 
                   nama =  '$nama', 
                   signalemen = '$signalemen',
                   jk = $jk,
                   lahir = '$lahir',
-                  id_ras = '$id_ras'
+                  id_ras = '$id_ras',
+                  tatto_chip = '$tc'
               WHERE id = $id");
           if (!$result) {
               die('execute failed: ' . htmlspecialchars($stmt->error));

@@ -242,13 +242,15 @@
 
       rm.id as id,
       rm.tanggal as tanggal,
+      ROUND(rm.berat, 2) as berat,
 
       pasien.id AS pasien_id,
       pasien.nama AS pasien_nama,
       pasien.lahir AS pasien_lahir,
-      IF(pasien.jk = 1, 'Jantan', 'Betina') AS pasien_format_jk,
+      IF(pasien.jk = 1, 'M', 'F') AS pasien_format_jk,
       pasien.tipe_norek as tipe_norek,
       pasien.norek as norek,
+      pasien.tatto_chip as pasien_tc,
 
       ras.nama AS ras_nama,
       ras.id AS ras_id,
@@ -276,6 +278,8 @@
 
       WHERE 
         UPPER(pasien.nama) LIKE '%$k%' OR 
+        UPPER(pasien.norek) LIKE '%$k%' OR 
+        UPPER(pasien.tipe_norek) LIKE '%$k%' OR 
         UPPER(jenis_hewan.nama) LIKE '%$k%' OR
         UPPER(pemilik.nama) LIKE '%$k%' OR
         UPPER(ras.nama) LIKE '%$k%' OR
@@ -319,8 +323,6 @@
       rm.kul_rambut as kul_rambut,
       rm.kelenjar_limfe as kelenjar_limfe,
       rm.pernapasan as pernapasan,
-      rm.peredaran_darah as peredaran_darah,
-      rm.pencernaan as pencernaan,
       rm.kelamin_perkencingan as kelamin_perkencingan,
       rm.ang_gerak as ang_gerak,
       rm.diagnosa as diagnosa,
@@ -330,9 +332,11 @@
       pasien.id AS pasien_id,
       pasien.nama AS pasien_nama,
       pasien.lahir AS pasien_lahir,
-      IF(pasien.jk = 1, 'Jantan', 'Betina') AS pasien_format_jk,
+      YEAR(CURRENT_TIMESTAMP) - YEAR(pasien.lahir) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(pasien.lahir, 5)) as umur,
+      IF(pasien.jk = 1, 'M', 'F') AS pasien_format_jk,
       pasien.tipe_norek as tipe_norek,
       pasien.norek as norek,
+      pasien.tatto_chip as pasien_tc,
 
       penyakit.id as penyakit_id,
       penyakit.nama as penyakit_nama,
@@ -344,6 +348,8 @@
       jenis_hewan.id AS jh_id,
 
       pemilik.nama as pemilik_nama,
+      pemilik.alamat as pemilik_alamat,
+      pemilik.no_telp as pemilik_no_telp,
       pemilik.id as pemilik_id
 
       FROM rekam_medik rm
@@ -421,7 +427,8 @@
         die('Error: rekam medik id is required');
       }
       $queryResult = $this->db->query("
-        SELECT id, id_tipe_hasil_lab, struktur FROM hasil_lab
+        SELECT hasil_lab.id, thl.nama as nama_tipe, id_tipe_hasil_lab, hasil_lab.struktur FROM hasil_lab
+          LEFT JOIN tipe_hasil_lab thl ON hasil_lab.id_tipe_hasil_lab = thl.id
           WHERE id_rekam_medik = $rmId
       ");
       if (!$queryResult) {
@@ -464,7 +471,8 @@
         die('Error: rekam medik id is required');
       }
       $queryResult = $this->db->query("
-        SELECT id, id_tipe_pen_khusus, deskripsi FROM pen_khusus
+        SELECT pen_khusus.id, tpk.nama as nama_tipe, id_tipe_pen_khusus, deskripsi FROM pen_khusus
+          LEFT JOIN tipe_pen_khusus tpk ON pen_khusus.id_tipe_pen_khusus = tpk.id
           WHERE id_rekam_medik = $rmId
       ");
       if (!$queryResult) {
@@ -491,12 +499,13 @@
       $insertPenKhususBaseQuery = 'INSERT INTO pen_khusus (id_tipe_pen_khusus, id_rekam_medik, deskripsi) VALUES ';
       foreach ($data as $pk) {
         $id_tipe_pen_khusus = $pk['id'];
-        $deskripsi = $pk['deskripsi'];
+        $deskripsi = $this->db->escape_string($pk['deskripsi']);
         $insertPenKhususQuery = $insertPenKhususBaseQuery . " ($id_tipe_pen_khusus, $rmId, '$deskripsi') ";
         $insertPenKhususQueryResult = $this->db->query($insertPenKhususQuery);
         if (!$insertPenKhususQueryResult) {
           http_response_code(500);
-          die('Fail to insert pen_khusus : ' . $insertHasilLabQuery);
+          die($this->db->error);
+          die('Fail to insert pen_khusus : ' . $insertPenKhususQuery);
         }
       }
     }
