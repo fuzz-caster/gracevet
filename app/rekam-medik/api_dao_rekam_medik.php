@@ -158,6 +158,10 @@
         [ 'ang_gerak', 's' ],
         [ 'diagnosa', 's' ],
         [ 'prognosis', 's' ],
+
+        [ 'anamnesis', 's' ],
+        [ 'keadaan_umum', 's' ],
+
         [ 'terapi', 's' ],
         [ 'norek', 's' ]
       ];
@@ -327,6 +331,8 @@
       rm.ang_gerak as ang_gerak,
       rm.diagnosa as diagnosa,
       rm.prognosis as prognosis,
+      rm.anamnesis as anamnesis,
+      rm.keadaan_umum as keadaan_umum,
       rm.terapi as terapi,
 
       pasien.id AS pasien_id,
@@ -390,6 +396,8 @@
       $ang_gerak = $data['ang_gerak'];
       $diagnosa = $data['diagnosa'];
       $prognosis = $data['prognosis'];
+      $anamnesis = $data['anamnesis'];
+      $keadaan_umum = $data['keadaan_umum'];
       $terapi = $data['terapi'];
       $norek = $data['norek'];
       $query = "
@@ -412,6 +420,10 @@
           ang_gerak = '$ang_gerak',
           diagnosa = '$diagnosa',
           prognosis = '$prognosis',
+
+          anamnesis = '$anamnesis',
+          keadaan_umum = '$keadaan_umum',
+
           terapi = '$terapi',
           norek = '$norek'
           WHERE id = $id

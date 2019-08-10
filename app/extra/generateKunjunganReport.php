@@ -153,6 +153,14 @@
             <td><?php echo $rm['prognosis'] ?></td>
           </tr>
           <tr>
+            <td>Anamnesis</td>
+            <td><?php echo $rm['anamnesis'] ?></td>
+          </tr>
+          <tr>
+            <td>Keadaan Umum</td>
+            <td><?php echo $rm['keadaan_umum'] ?></td>
+          </tr>
+          <tr>
             <td>Terapi</td>
             <td><?php echo $rm['terapi'] ?></td>
           </tr>
