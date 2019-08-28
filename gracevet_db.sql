@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db:3306
--- Generation Time: Aug 10, 2019 at 01:28 AM
+-- Generation Time: Aug 14, 2019 at 12:02 PM
 -- Server version: 8.0.3-rc-log
 -- PHP Version: 7.2.8
 
@@ -64,31 +64,7 @@ CREATE TABLE `jenis_hewan` (
 INSERT INTO `jenis_hewan` (`id`, `nama`, `total_kunjungan`, `kunj_terakhir`) VALUES
 (4, 'Kucing', 21, NULL),
 (6, 'Ular', 0, NULL),
-(7, 'Anjing 2', 4, '2018-02-02 00:00:00'),
-(8, 'A', 1, '2018-11-05 00:34:00'),
-(10, 'C', 0, NULL),
-(11, 'Edited', 0, NULL),
-(13, 'JH2', 0, NULL),
-(14, 'JH', 0, NULL),
-(15, 'JH3', 0, NULL),
-(16, 'JH4', 0, NULL),
-(17, 'JH5', 0, NULL),
-(18, 'JH6', 0, NULL),
-(19, 'JH7', 0, NULL),
-(20, 'JH8', 0, NULL),
-(21, 'JH9', 0, NULL),
-(22, 'JH10', 0, NULL),
-(23, 'JH11', 0, NULL),
-(24, 'JH12', 0, NULL),
-(25, 'JH13', 0, NULL),
-(26, 'JH14', 0, NULL),
-(27, 'JH15', 0, NULL),
-(28, 'JH16', 0, NULL),
-(29, 'JH17', 0, NULL),
-(30, 'JH18', 0, NULL),
-(31, 'JH19', 0, NULL),
-(32, 'JH20', 0, NULL),
-(33, 'llll', 0, NULL);
+(7, 'Anjing', 4, '2018-02-02 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -140,7 +116,7 @@ INSERT INTO `pasien` (`id`, `nama`, `jk`, `tatto_chip`, `signalemen`, `lahir`, `
 (1, 'asas', 1, NULL, 'dsdsd', '2011-10-10', 0, NULL, 5, 'GA', 1, 33),
 (6, 'sssd', 1, NULL, 'sdsd', '2018-10-02', 1, NULL, 5, 'GA', 2, 1),
 (7, 'sss', 1, NULL, 'ssdsd', '2018-10-03', 0, NULL, 5, 'GC', 3, 3),
-(60, 'Bully', 0, 'Anjing', 'Anjing', '2010-01-01', 0, NULL, 6, 'GA', 4, NULL);
+(61, 'sdsd', 0, 'sdsds', 'sdsd', '2010-06-11', 0, NULL, 4, 'GA', 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -219,7 +195,8 @@ INSERT INTO `pemilik` (`id`, `nama`, `alamat`, `no_telp`, `total_kunjungan`, `ku
 (55, 'Antus', 'Oesapa', '089232', 0, NULL),
 (56, 'asasssd', 'sdsdsd', 'sdsd', 0, NULL),
 (57, 'hfhfh', 'fhfh', 'hfh', 0, NULL),
-(58, 'Bai', 'Oepura', '', 0, NULL);
+(58, 'Bai', 'Oepura', '', 0, NULL),
+(59, 'sdsdsd', 'sdsd', 'sdsd', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -317,8 +294,7 @@ CREATE TABLE `ras` (
 
 INSERT INTO `ras` (`id`, `nama`, `total_kunjungan`, `kunj_terakhir`, `id_jenis_hewan`) VALUES
 (4, 'B12', 0, NULL, 7),
-(5, 'C', 21, NULL, 4),
-(6, 'Bulldog 1', 1, '2018-11-05 00:34:00', 8);
+(5, 'C', 21, NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -367,11 +343,11 @@ INSERT INTO `rekam_medik` (`id`, `pasien_id`, `pemilik_id`, `penyakit_id`, `tang
 (33, 7, 32, 2, '2018-11-30 03:11:00', 1.00000, 'GB', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '', '5'),
 (42, 1, 56, 6, '2018-11-30 06:22:00', 41.00000, 'GA', 1.00000, 1.00000, 1, 'sdsdsdsd sdsd', 'sdsdds', 'ddf', 'dfdf', 'dfdfdf', 'dfdfdf', 'dfdf', '', '', '', '', NULL, NULL, '', '1'),
 (43, 1, 57, 7, '2018-12-04 06:02:00', 1.00000, 'GA', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '', '1'),
-(44, 1, 33, 8, '2018-12-05 02:50:00', 1.00000, 'GA', 1.00000, 1.00000, 1, 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', NULL, NULL, 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', '1'),
+(44, 1, 33, 8, '2018-12-05 02:50:00', 1.00000, 'GA', 1.00000, 1.00000, 1, 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Keterangan', 'Keadaan Umum', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', '1'),
 (46, 1, 33, 1, '2019-07-31 09:20:00', 1.00000, 'GA', 1.00000, 1.00000, 1, '', '', '', '', '', 'gkjgkj jjk lkklj kjl kjkl lkjlk', '', '', '', '', '', NULL, NULL, '', '1'),
-(47, 60, 32, 8, '2019-07-31 11:32:00', 1.00000, 'GA', 1.00000, 1.00000, 1, 'In computer science and operations research, the artificial bee colony algorithm (ABC) is an optimization algorithm based on the intelligent foraging behaviour of honey bee swarm,', '', '', '', '', '', '', '', '', '', '', 'Foobar', 'Foobar', '', '4'),
 (48, 1, 58, NULL, '2019-08-10 00:41:39', 1.00000, NULL, 1.00000, 1.00000, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(49, 1, 58, 1, '2019-08-10 00:41:00', 1.00000, 'GA', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', 'sjskjks', 'ssjksjkss', '', '1');
+(49, 1, 58, 1, '2019-08-10 00:41:00', 1.00000, 'GA', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', 'sjskjks', 'ssjksjkss', '', '1'),
+(50, 61, 59, 8, '2019-08-14 11:51:00', 10.00000, 'GA', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '4');
 
 -- --------------------------------------------------------
 
@@ -553,13 +529,13 @@ ALTER TABLE `obat`
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `pemilik`
 --
 ALTER TABLE `pemilik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `penyakit`
@@ -589,7 +565,7 @@ ALTER TABLE `ras`
 -- AUTO_INCREMENT for table `rekam_medik`
 --
 ALTER TABLE `rekam_medik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `resep`

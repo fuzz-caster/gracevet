@@ -12,14 +12,14 @@
       $this->db = $db;
     }
 
-    public function add ($name) {
-      $stmt = $this->db->prepare("INSERT INTO $this->tbname (nama) VALUES (?)");
+    public function add ($name, $kode) {
+      $stmt = $this->db->prepare("INSERT INTO $this->tbname (nama, kode) VALUES (?, ?)");
       if (!$stmt) {
         http_response_code(500);
         echo 'Error Creating statement';
         die();
       }
-      if (!$stmt->bind_param('s', $name)) {
+      if (!$stmt->bind_param('ss', $name, $kode)) {
         http_response_code(500);
         die('Error: Can not bind param');
       }
@@ -72,18 +72,18 @@
       return $result;
     }
 
-    public function update ($id, $nama) {
+    public function update ($id, $nama, $kode) {
       if (!$id) {
         http_response_code(500);
         die('Error: Empty id');
       }
-      $stmt = $this->db->prepare('UPDATE jenis_hewan SET nama =  ? WHERE id = ?');
+      $stmt = $this->db->prepare('UPDATE jenis_hewan SET nama =  ?, kode = ? WHERE id = ?');
       if (!$stmt) {
         http_response_code(500);
         echo 'Error Creating statement';
         die();
       }
-      if (!$stmt->bind_param('si', $nama, $id)) {
+      if (!$stmt->bind_param('ssi', $nama, $kode, $id)) {
         die('Error: Can not bind param');
       }
       return $stmt->execute();
@@ -114,8 +114,11 @@
     if (empty($data['nama'])) {
       die('Error: nama can not be empty');
     }
+    if (empty($data['kode'])) {
+      die('Error: kode can not be empty');
+    }
     
-    $result = $DAO_jenis_hewan->add($data['nama']);
+    $result = $DAO_jenis_hewan->add($data['nama'], $data['kode']);
     if (!$result) {
       http_response_code(500);
     } else {
@@ -129,13 +132,18 @@
       http_response_code(500);   
       die('Error: property "nama" is required');
     }
+    if (empty($data['kode'])) {
+      http_response_code(500);   
+      die('Error: property "nama" is required');
+    }
     if (empty($data['id'])) {
       http_response_code(500);   
     }
 
     $nama = $data['nama'];
+    $kode = $data['kode'];
     $id = $data['id'];
-    $result = $DAO_jenis_hewan->update($id, $nama);
+    $result = $DAO_jenis_hewan->update($id, $nama, $kode);
     if (!$result) {
       http_response_code(500);   
       die('Error: can not update jenis hewan');
