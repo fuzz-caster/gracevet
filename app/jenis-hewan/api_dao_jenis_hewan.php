@@ -30,6 +30,12 @@
       return $result;
     }
 
+    public function loadAll() {
+      $result = $this->db->query("SELECT * FROM jenis_hewan");
+      $items = $result->fetch_all(MYSQLI_ASSOC);
+      return $items;
+    }
+
     public function list ($skip, $limit, $keyword) {
       if (!isset($skip)) {
         die('Error: argument "skip" is required');
@@ -179,6 +185,10 @@
       $keyword = $_GET['keyword'];
     }
     returnJson($DAO_jenis_hewan->listPagination($page, $keyword));
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['command']) && $_GET['command'] == 'load-all') {
+    returnJson($DAO_jenis_hewan->loadAll());
   }
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['command']) && $_GET['command'] == 'load_by_id') {

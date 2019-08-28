@@ -264,6 +264,7 @@
 
       jenis_hewan.nama AS jh_nama,
       jenis_hewan.id AS jh_id,
+      jenis_hewan.kode AS jh_kode,
 
       pemilik.nama as pemilik_nama,
       pemilik.alamat as pemilik_alamat,
@@ -352,6 +353,7 @@
 
       jenis_hewan.nama AS jh_nama,
       jenis_hewan.id AS jh_id,
+      jenis_hewan.kode AS jh_kode,
 
       pemilik.nama as pemilik_nama,
       pemilik.alamat as pemilik_alamat,

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db:3306
--- Generation Time: Aug 14, 2019 at 12:02 PM
+-- Generation Time: Aug 28, 2019 at 05:18 PM
 -- Server version: 8.0.3-rc-log
 -- PHP Version: 7.2.8
 
@@ -40,9 +40,9 @@ CREATE TABLE `hasil_lab` (
 --
 
 INSERT INTO `hasil_lab` (`id`, `id_tipe_hasil_lab`, `id_rekam_medik`, `struktur`) VALUES
-(72, 2, 44, '[{\"nama\":\"Natif\",\"type\":\"text\",\"value\":\"asasasasas\"},{\"nama\":\"Centrifuse\",\"type\":\"text\",\"value\":\"sdsdsdsd\"}]'),
-(73, 5, 44, '[{\"nama\":\"Faal Ginjal(Creat)\",\"type\":\"text\",\"value\":\"sdsdsd\"},{\"nama\":\"Faal Ginjal(BUN)\",\"type\":\"number\",\"value\":\"5\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"Faal Hati(SGPT/ALT)\",\"value\":\"ssdsd\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"Faal Hati(SGOT/AST)\",\"value\":\"sdsdsd\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"Faal Hati(Bilirubun Total)\",\"value\":\"sdsdsd\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"Faal Hati(Bilirubun dir.)\",\"value\":\"sdssd\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"Faal Hati(Bilirubun indir.)\",\"value\":\"ssdsd\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"lain-lain\",\"value\":null}]'),
-(74, 2, 46, '[{\"nama\":\"Natif\",\"type\":\"text\",\"value\":\"asaas\"},{\"nama\":\"Centrifuse\",\"type\":\"text\",\"value\":\"asas\"}]');
+(75, 2, 51, '[{\"nama\":\"Natif\",\"type\":\"text\",\"value\":\"sdsd\"},{\"nama\":\"Centrifuse\",\"type\":\"text\",\"value\":\"ssdd\"}]'),
+(76, 3, 51, '[{\"nama\":\"Kerokan\",\"type\":\"text\",\"value\":\"sdsds\"},{\"nama\":\"Wood Lamp\",\"type\":\"text\",\"value\":\"ssdsd\"}]'),
+(77, 4, 51, '[{\"nama\":\"RBC\",\"type\":\"text\",\"value\":\"sdsd\"},{\"nama\":\"Hb\",\"type\":\"number\",\"value\":\"4\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"PCV\",\"value\":\"sdsd\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"Platelet\",\"value\":\"sdsd\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"Leukosit\",\"value\":\"sdsd\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"Neutrofil\",\"value\":\"sdsd\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"Eosinofil\",\"value\":\"sdsd\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"Basofit\",\"value\":\"sdsd\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"Limsofit\",\"value\":\"sdsd\"},{\"type\":\"text\",\"name\":\"\",\"nama\":\"Monosit\",\"value\":\"sdsd\"}]');
 
 -- --------------------------------------------------------
 
@@ -53,6 +53,7 @@ INSERT INTO `hasil_lab` (`id`, `id_tipe_hasil_lab`, `id_rekam_medik`, `struktur`
 CREATE TABLE `jenis_hewan` (
   `id` int(11) NOT NULL,
   `nama` varchar(250) NOT NULL,
+  `kode` varchar(20) NOT NULL,
   `total_kunjungan` int(11) NOT NULL DEFAULT '0',
   `kunj_terakhir` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -61,10 +62,10 @@ CREATE TABLE `jenis_hewan` (
 -- Dumping data for table `jenis_hewan`
 --
 
-INSERT INTO `jenis_hewan` (`id`, `nama`, `total_kunjungan`, `kunj_terakhir`) VALUES
-(4, 'Kucing', 21, NULL),
-(6, 'Ular', 0, NULL),
-(7, 'Anjing', 4, '2018-02-02 00:00:00');
+INSERT INTO `jenis_hewan` (`id`, `nama`, `kode`, `total_kunjungan`, `kunj_terakhir`) VALUES
+(4, 'Kucing', 'GK', 10, NULL),
+(6, 'Ular', 'GC', 0, NULL),
+(7, 'Anjing', 'GA', 4, '2018-02-02 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,7 @@ CREATE TABLE `pasien` (
   `total_kunjungan` int(11) NOT NULL DEFAULT '0',
   `kunj_terakhir` datetime DEFAULT NULL,
   `id_ras` int(11) NOT NULL,
-  `tipe_norek` enum('GA','GB','GC','GD') DEFAULT 'GA',
+  `tipe_norek` varchar(250) DEFAULT 'GA',
   `norek` int(11) DEFAULT NULL,
   `temp_pemilik_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -114,9 +115,10 @@ CREATE TABLE `pasien` (
 
 INSERT INTO `pasien` (`id`, `nama`, `jk`, `tatto_chip`, `signalemen`, `lahir`, `total_kunjungan`, `kunj_terakhir`, `id_ras`, `tipe_norek`, `norek`, `temp_pemilik_id`) VALUES
 (1, 'asas', 1, NULL, 'dsdsd', '2011-10-10', 0, NULL, 5, 'GA', 1, 33),
-(6, 'sssd', 1, NULL, 'sdsd', '2018-10-02', 1, NULL, 5, 'GA', 2, 1),
+(6, 'sssd', 1, NULL, 'sdsd', '2018-10-02', 0, NULL, 5, 'GA', 2, 1),
 (7, 'sss', 1, NULL, 'ssdsd', '2018-10-03', 0, NULL, 5, 'GC', 3, 3),
-(61, 'sdsd', 0, 'sdsds', 'sdsd', '2010-06-11', 0, NULL, 4, 'GA', 4, NULL);
+(61, 'sdsd', 0, 'sdsds', 'sdsd', '2010-06-11', 0, NULL, 4, 'GA', 4, NULL),
+(62, 'sdsdsd', 0, 'sdsd', 'sdsd', '2014-10-09', 0, NULL, 5, 'GA', 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -157,9 +159,6 @@ INSERT INTO `pemilik` (`id`, `nama`, `alamat`, `no_telp`, `total_kunjungan`, `ku
 (17, 'P1', 'a', '09323', 0, NULL),
 (18, 'P1', 'a', '09323', 1, '0000-00-00 00:00:00'),
 (19, 'P1', 'a', '09323', 1, '0000-00-00 00:00:00'),
-(20, 'P1', 'a', '09323', 1, '0000-00-00 00:00:00'),
-(21, 'P1', 'a', '09323', 1, '0000-00-00 00:00:00'),
-(22, 'P1', 'a', '09323', 1, '0000-00-00 00:00:00'),
 (23, 'P1', 'a', '09323', 1, '0000-00-00 00:00:00'),
 (24, 'P1', 'a', '09323', 1, '0000-00-00 00:00:00'),
 (25, 'P1', 'a', '09323', 1, '0000-00-00 00:00:00'),
@@ -169,14 +168,14 @@ INSERT INTO `pemilik` (`id`, `nama`, `alamat`, `no_telp`, `total_kunjungan`, `ku
 (29, 'P1', 'a', '09323', 1, '0000-00-00 00:00:00'),
 (30, 'P1', 'a', '09323', 1, '0000-00-00 00:00:00'),
 (31, 'P1', 'a', '09323', 1, '0000-00-00 00:00:00'),
-(32, 'Jordan', 'Oesapa', 'sdsdsd', 4, '2018-11-07 16:30:00'),
-(33, 'Jordan', 'Oesapa', 'sdsdsd', 1, '2018-09-05 00:00:00'),
+(32, 'Jordan', 'Oesapa', 'sdsdsd', 1, NULL),
+(33, 'Jordan', 'Oesapa', 'sdsdsd', 0, NULL),
 (34, 'sdsdsd', 'sdsds', '', 1, '0000-00-00 00:00:00'),
 (35, 'sdsdsd', 'sdsds', '', 1, '2018-11-01 00:00:00'),
 (36, 'sdsdsd', 'sdsds', '', 1, '2018-11-01 00:00:00'),
 (37, 'sdsdsd', 'sdsds', '', 1, '2018-11-01 00:00:00'),
-(38, 'sdsd', 'sdsdsd', 'sdsdsd', 1, '2018-11-05 00:34:00'),
-(39, 'fhfhf', 'mmhmh', 'hthth', 1, '2018-11-07 16:30:00'),
+(38, 'sdsd', 'sdsdsd', 'sdsdsd', 0, NULL),
+(39, 'fhfhf', 'mmhmh', 'hthth', 0, NULL),
 (40, 'hshskwhws`ss', 'khkh', 'mbmbmb', 0, NULL),
 (41, 'sdsd', 'sdsd', 'sdsd', 0, NULL),
 (42, 'sdsd', 'sdsd', 'sdsd', 0, NULL),
@@ -196,7 +195,8 @@ INSERT INTO `pemilik` (`id`, `nama`, `alamat`, `no_telp`, `total_kunjungan`, `ku
 (56, 'asasssd', 'sdsdsd', 'sdsd', 0, NULL),
 (57, 'hfhfh', 'fhfh', 'hfh', 0, NULL),
 (58, 'Bai', 'Oepura', '', 0, NULL),
-(59, 'sdsdsd', 'sdsd', 'sdsd', 0, NULL);
+(59, 'sdsdsd', 'sdsd', 'sdsd', 0, NULL),
+(60, 'Fino', 'Oesapa', '821989812', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -237,8 +237,8 @@ CREATE TABLE `pen_khusus` (
 --
 
 INSERT INTO `pen_khusus` (`id`, `id_tipe_pen_khusus`, `id_rekam_medik`, `deskripsi`, `total_penggunaan`, `penggunaan_terakhir`) VALUES
-(16, 2, 44, 'I\'m trying to open a URL in a new tab, as opposed to a popup window. I\'ve seen related questions where the responses would look something like:\n\n', 0, NULL),
-(17, 3, 44, 'The Kalkaua coinage is a set of silver coins of the Kingdom of Hawaii dated 1883. They were designed by Charles E. Barber, Chief Engraver of the United States Bureau of the Mint, and were struck at the San Francisco Mint. The issued coins are a dime, quarter dollar, half dollar, and dollar (pictured). No immediate action had been taken after the 1880 act authorizing the coins, but King  was interested, and government officials saw a way to get out of a financial bind by getting coins issued in exchange for government bonds. ', 0, NULL);
+(18, 2, 51, 'sdsdsdsdsd dfdffd', 0, NULL),
+(19, 3, 51, 'sdsd sdsd sd sdsd', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -272,7 +272,8 @@ INSERT INTO `perawatan` (`id`, `rm_id`, `waktu`, `keterangan`, `nxm`, `pxm`, `to
 (13, 26, '2018-11-06 13:12:00', 'llljljlj', 4, 0, 'gkkhk', 'RAWAT'),
 (14, 26, '2018-11-06 16:12:00', 'llljljlj', 4, 0, 'gkkhk', 'RAWAT'),
 (15, 41, '2018-11-14 14:46:00', 'Bagus', 0, 0, '', 'RAWAT'),
-(16, 41, '2018-11-07 17:12:00', 'llsj sksk skhs ', 3, 3, 'khkkh', 'RAWAT');
+(16, 41, '2018-11-07 17:12:00', 'llsj sksk skhs ', 3, 3, 'khkkh', 'RAWAT'),
+(17, 51, '2018-10-10 08:00:00', 'Bagus', 3, 3, 'ssjk', 'RAWAT');
 
 -- --------------------------------------------------------
 
@@ -294,7 +295,7 @@ CREATE TABLE `ras` (
 
 INSERT INTO `ras` (`id`, `nama`, `total_kunjungan`, `kunj_terakhir`, `id_jenis_hewan`) VALUES
 (4, 'B12', 0, NULL, 7),
-(5, 'C', 21, NULL, 4);
+(5, 'C', 10, NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -335,19 +336,10 @@ CREATE TABLE `rekam_medik` (
 --
 
 INSERT INTO `rekam_medik` (`id`, `pasien_id`, `pemilik_id`, `penyakit_id`, `tanggal`, `berat`, `tipe_norek`, `freq_n`, `freq_p`, `freq_t`, `mth`, `mulut`, `kul_rambut`, `kelenjar_limfe`, `pernapasan`, `peredaran_darah`, `pencernaan`, `kelamin_perkencingan`, `ang_gerak`, `diagnosa`, `prognosis`, `anamnesis`, `keadaan_umum`, `terapi`, `norek`) VALUES
-(22, 1, 32, 2, '2018-11-30 03:11:00', 1.00000, 'GB', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '', '5'),
-(23, 6, 38, 2, '2018-11-30 03:11:00', 1.00000, 'GB', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '', '5'),
-(24, 7, 39, 2, '2018-11-30 03:11:00', 1.00000, 'GB', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '', '5'),
-(25, 6, 32, 2, '2018-11-30 03:11:00', 1.00000, 'GB', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '', '5'),
-(32, 6, 2, 2, '2018-11-30 03:11:00', 1.00000, 'GB', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '', '5'),
-(33, 7, 32, 2, '2018-11-30 03:11:00', 1.00000, 'GB', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '', '5'),
-(42, 1, 56, 6, '2018-11-30 06:22:00', 41.00000, 'GA', 1.00000, 1.00000, 1, 'sdsdsdsd sdsd', 'sdsdds', 'ddf', 'dfdf', 'dfdfdf', 'dfdfdf', 'dfdf', '', '', '', '', NULL, NULL, '', '1'),
-(43, 1, 57, 7, '2018-12-04 06:02:00', 1.00000, 'GA', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '', '1'),
-(44, 1, 33, 8, '2018-12-05 02:50:00', 1.00000, 'GA', 1.00000, 1.00000, 1, 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', 'Keterangan', 'Keadaan Umum', 'Often you may want to have your table resize dynamically with the page. Typically this is done by assigning width:100% in your CSS, but this presents a problem for Javascript since it can be very hard to get that relative size rather than the absolute pixels. As such, if you apply the width attribute to the HTML table tag or inline width style ', '1'),
-(46, 1, 33, 1, '2019-07-31 09:20:00', 1.00000, 'GA', 1.00000, 1.00000, 1, '', '', '', '', '', 'gkjgkj jjk lkklj kjl kjkl lkjlk', '', '', '', '', '', NULL, NULL, '', '1'),
 (48, 1, 58, NULL, '2019-08-10 00:41:39', 1.00000, NULL, 1.00000, 1.00000, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(49, 1, 58, 1, '2019-08-10 00:41:00', 1.00000, 'GA', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', 'sjskjks', 'ssjksjkss', '', '1'),
-(50, 61, 59, 8, '2019-08-14 11:51:00', 10.00000, 'GA', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '4');
+(50, 61, 59, 8, '2019-08-14 11:51:00', 10.00000, 'GA', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '4'),
+(51, 1, 32, 1, '2019-08-28 00:50:00', 1.00000, 'GA', 1.00000, 1.00000, 1, 'Ever since the Devil breathes\nMy steps never outweighed the gravity ov hell\nSo I keep praying for rain of flaming rocks\nTo foster the symmetry ov worlds\nI had a vision ov the impenetrable darkness\nNever found on either side ov the moon\nIt wields composure ov my soul\nThat comes as one with the odium below...', 'Chant the psalm\nNon serviam\nRetrieve the pride\nWithin and without', 'Odrzucam wszelki ład, wszelką ideę\nNie ufam żadnej abstrakcji, doktrynie\nNie wierzę ani w Boga, ani w Rozum!\nDość już tych Bogów! Dajcie mi człowieka!', 'Niech będzie, jak ja, mętny, niedojrzały\nNieukończony, ciemny i niejasny\nAbym z nim tańczył! Bawił się z nim! Z nim walczył\nPrzed nim udawał! Do niego się wdzięczył!', 'I jego gwałcił, w nim się kochał, na nim\nStwarzał się wciąż na nowo, nim rósł i tak rosnąc\nSam sobie dawał ślub w kościele ludzkim!\n\n', 'I imagined the most ardent ray ov sun\nLike vulture hovering above my neck\nIt burns with fever deep within my sou', 'Erect in gloria to sin(k) into shame\nOh Lord, whence came this doubt?\nThou doth know I am all and everything', '', '', '', '', '', '', '', '1'),
+(52, 62, 60, 8, '2019-08-28 14:27:00', 1.00000, 'GA', 1.00000, 1.00000, 1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '5');
 
 -- --------------------------------------------------------
 
@@ -511,7 +503,7 @@ ALTER TABLE `tipe_pen_khusus`
 -- AUTO_INCREMENT for table `hasil_lab`
 --
 ALTER TABLE `hasil_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `jenis_hewan`
@@ -529,13 +521,13 @@ ALTER TABLE `obat`
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `pemilik`
 --
 ALTER TABLE `pemilik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `penyakit`
@@ -547,13 +539,13 @@ ALTER TABLE `penyakit`
 -- AUTO_INCREMENT for table `pen_khusus`
 --
 ALTER TABLE `pen_khusus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `perawatan`
 --
 ALTER TABLE `perawatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `ras`
@@ -565,7 +557,7 @@ ALTER TABLE `ras`
 -- AUTO_INCREMENT for table `rekam_medik`
 --
 ALTER TABLE `rekam_medik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `resep`

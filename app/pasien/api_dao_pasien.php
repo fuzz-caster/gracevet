@@ -90,7 +90,8 @@
                   ras.id AS ras_id,
 
                   jenis_hewan.nama AS jh_nama,
-                  jenis_hewan.id AS jh_id
+                  jenis_hewan.id AS jh_id,
+                  jenis_hewan.kode AS jh_kode
 
                   FROM pasien
                   JOIN ras ON pasien.id_ras = ras.id
@@ -149,7 +150,8 @@
               ras.id AS ras_id,
 
               jenis_hewan.nama AS jh_nama,
-              jenis_hewan.id AS jh_id
+              jenis_hewan.id AS jh_id,
+              jenis_hewan.kode AS jh_kode
 
               FROM pasien
               JOIN ras ON pasien.id_ras = ras.id

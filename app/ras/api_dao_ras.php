@@ -25,7 +25,26 @@
 
 					$result = $stmt->execute();
 					return $result;
-			}
+      }
+      
+      public function loadAll() {
+          $query = "
+            SELECT ras.id, ras.nama, jenis_hewan.nama AS nama_jh,
+              ras.kunj_terakhir,
+              ras.total_kunjungan,
+              jenis_hewan.id AS id_jh
+              FROM ras
+              JOIN jenis_hewan ON ras.id_jenis_hewan = jenis_hewan.id
+            ";
+          $result = $this->db->query($query);
+					if (!$result) {
+            http_response_code(500);
+            echo $query;
+						die('Error: Fail get data');
+					}
+					$result = $result->fetch_all(MYSQLI_ASSOC);
+					return $result;
+      }
 
 			public function list ($skip, $limit, $keyword) {
           if (!isset($skip)) {
@@ -184,6 +203,10 @@
       die('Error: can not delete ras');
     }
     http_response_code(200);
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['command']) && $_GET['command'] == 'load-all') {
+    returnJson($DAO_ras->loadAll());
   }
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['command']) && $_GET['command'] == 'load') {
